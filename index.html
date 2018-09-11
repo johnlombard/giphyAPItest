@@ -7,11 +7,18 @@
     <title>Document</title>
 </head>
 <body>
+
     
+    <button id="button">animal</button>
+    <div id="gifs"></div>
+     
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+
+    
+    
 //link api
 //pick category
 //have a list of buttons to add gifs of
@@ -22,13 +29,35 @@
 
 
 
-// $("#submit").on("click", function() {
-//     // let querl URL = set equal to api url
+$("button").on("click", function() {
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=PGCI3RjmtWEW6M0zogdgWAJ8x4NZprwQ&q=cats&limit=25&offset=0&rating=PG&lang=en";
 
-//     // $.ajax({
-//     //     url: queryURL,
-//     //     method: "GET"
-//     // })
+$.ajax({
+        url: queryURL,
+        method: "GET"
+     })
+.then(function(response) {
+
+    console.log(response);
+    var imageURL = response.data[0].url;
+
+    var catImage = $("<img>");
+    console.log(response + "hello");
+          
+          catImage.attr("src", imageUrl);
+          catImage.attr("alt", "cat image");
+
+          //
+          $("#images").prepend(catImage);
+    });
+});
+//https://api.giphy.com/v1/gifs/search?api_key=PGCI3RjmtWEW6M0zogdgWAJ8x4NZprwQ&q=&limit=25&offset=0&rating=PG&lang=en   
+  // var apiKey = PGCI3RjmtWEW6M0zogdgWAJ8x4NZprwQ
+  //q = search topic
+  // rating 
+
+
+//     
 
 //     // .then(function(response) {
 //     //     var imageURL = response.data.image_orignial_url;

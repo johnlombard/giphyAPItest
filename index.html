@@ -36,22 +36,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
 
+//adding buttons to the list
     $("#submit").on("click", function (event) {
+      event.preventDefault();
       var addedSport = $("#addSport").val().trim();
       console.log(addedSport);
 
       var addedButton = $("<button> ");
 
       addedButton.attr("data-sport", addedSport);
+      addedButton.attr("class", "sportButton");
+
       addedButton.css("margin-right", "5px");
       addedButton.html("  " + addedSport + "   ");
 
       $("#sports").append(addedButton);
 
 
-      event.preventDefault();
+   });
+   
       //Event listner for the button click
-      $("button").on("click", function (event) {
+      $(document).on("click", ".sportButton", function (e) {
 
         //The button that was clicked
         var sport = $(this).attr("data-sport");
@@ -96,7 +101,7 @@
           });
       });
 
-    });
+    // });
 
 
 
